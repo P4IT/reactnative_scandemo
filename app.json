@@ -1,0 +1,8 @@
+{
+  "name": "scandemo",
+  "displayName": "scandemo",
+  "orientation": "portrait",
+  "expo": {
+    "orientation": "portrait"
+  }
+}
