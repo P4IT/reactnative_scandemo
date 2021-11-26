@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Button, View} from 'react-native';
+import {Button, View, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import Cidscan from 'react-native-cidscan';
 import RNCIDScanView from 'react-native-cidscan/src/cidscanview';
@@ -20,6 +20,20 @@ function enableTorch() {
     isTorch = false;
   }
 }
+
+const Circle = () => {
+  return <View style={styles.circle} />;
+};
+
+const styles = StyleSheet.create({
+  circle: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 100 / 2,
+    backgroundColor: "red",
+  },
+});
 
 export default class Scannerscreen extends Component {
   render() {
@@ -46,14 +60,15 @@ export default class Scannerscreen extends Component {
               onPress={() => {
                 startDecode();
               }}
-              title="Decode"
+              title="Click to decode"
             />
           </View>
         </View>
+        <View style={styles.circle} />
         <View
           style={{
             position: 'absolute',
-            top: 100,
+            top: 50,
             right: 20,
             flexDirection: 'row',
             height: 30,
@@ -69,7 +84,7 @@ export default class Scannerscreen extends Component {
               onPress={() => {
                 enableTorch();
               }}
-              title="Decode"
+              title="Flashlight"
             />
           </View>
         </View>

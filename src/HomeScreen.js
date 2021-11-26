@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
-import {Button, View, NativeEventEmitter, ScrollView} from 'react-native';
+import React, { Component } from 'react';
+import { View, NativeEventEmitter, ScrollView } from 'react-native';
+import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import Cidscan from 'react-native-cidscan';
 
 const captureIDHandlerEmitter = new NativeEventEmitter(Cidscan);
@@ -61,28 +62,40 @@ export default class Homescreen extends Component {
   render() {
     pp = this;
     return (
-      <ScrollView style={{backgroundColor: 'rgba(255, 255, 255, 0.0)'}}>
+      //<ScrollView style={{ backgroundColor: 'rgba(255, 255, 255, 0.0)' }}>
         <View
           style={{
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
             paddingTop: 40,
-            backgroundColor: 'rgba(10, 10, 10, 255)',
+            backgroundColor: 'rgba(15, 100, 180, 255)',
           }}>
-          <Button
-            title="Initialize"
-            onPress={() => {
-              init();
-            }}
-          />
-          
-          <Button
-            title="Scanner Page"
-            onPress={() => this.props.navigation.navigate('Scanner')}
-          />
+          <View style={{
+            flex: 3,
+            backgroundColor: 'rgba(95, 100, 180, 255)',
+          }}>
+            <Card>
+              <Card.Title>First Step - Initialize</Card.Title>
+              <Card.Divider />
+              <Button
+                title="Initialize"
+                onPress={() => {
+                  init();
+                }}
+              />
+            </Card>
+            <Card>
+              <Card.Title>Second Step - Scannen</Card.Title>
+              <Card.Divider />
+              <Button
+                title="Scanner Page"
+                onPress={() => this.props.navigation.navigate('Scanner')}
+              />
+            </Card>
+          </View>
         </View>
-      </ScrollView>
+      //</ScrollView>
     );
   }
 }
