@@ -33,6 +33,13 @@ const styles = StyleSheet.create({
     borderRadius: 100 / 2,
     backgroundColor: "red",
   },
+  rectangle: {
+    position: 'absolute',
+    width: 280,
+    height: 280,
+    borderColor: "red",
+    borderWidth: 2,
+  },
 });
 
 export default class Scannerscreen extends Component {
@@ -64,7 +71,7 @@ export default class Scannerscreen extends Component {
             />
           </View>
         </View>
-        <View style={styles.circle} />
+        <View style={styles.rectangle} />
         <View
           style={{
             position: 'absolute',
