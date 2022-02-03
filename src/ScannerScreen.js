@@ -6,9 +6,45 @@ import Cidscan from 'react-native-cidscan';
 import RNCIDScanView from 'react-native-cidscan/src/cidscanview';
 
 var isTorch = false;
+var maxZoom = 1;
+var minZoom = 1;
+var avgZoom = 1;
+var activeZoom = 1;
 
 function startDecode() {
+  // Init decoding
   Cidscan.startDecoder();
+
+  // Get zoom values from camera
+  Cidscan.getZoomRatios(callback);
+}
+
+function zoom(){
+  //switch between zoom values
+  if(activeZoom == minZoom){
+    Cidscan.setCameraZoom(true, maxZoom);
+    activeZoom = maxZoom;
+  } else {
+    Cidscan.setCameraZoom(true, minZoom);
+    activeZoom = minZoom;
+  }
+}
+
+function callback(error, result) {
+  if (error) {
+    // Funktion eurer Wahl
+  } else {
+    //console.debug(result);
+    console.debug(result.result[0].objValue);
+    if(result.result[0].objValue.length > 3){
+      maxZoom = result.result[0].objValue[result.result[0].objValue.length - 1];
+      minZoom = result.result[0].objValue[0];
+      avgZoom = result.result[0].objValue[(result.result[0].objValue.length / 2) - 1];
+    } else {
+      maxZoom = result.result[0].objValue[result.result[0].objValue.length - 1];
+      minZoom = result.result[0].objValue[0];
+    }
+  }
 }
 
 function enableTorch() {
@@ -52,7 +88,11 @@ export default class Scannerscreen extends Component {
           justifyContent: 'center',
           backgroundColor: 'rgba(100, 100, 100, 0)',
         }}>
-        <RNCIDScanView style={{height: '100%', width: '100%'}} />
+        <RNCIDScanView style={{height: '100%', width: '100%'}}  
+          onPreviewReady={() => {
+            startDecode();
+          }}
+        />
         <View
           style={{
             position: 'absolute',
@@ -68,6 +108,14 @@ export default class Scannerscreen extends Component {
                 startDecode();
               }}
               title="Click to decode"
+            />
+          </View>
+          <View>
+            <Button
+              onPress={() => {
+                zoom();
+              }}
+              title="Zoom"
             />
           </View>
         </View>

@@ -5887,10 +5887,10 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
-"react-native-cidscan@^1.0.96":
-  "integrity" "sha512-BbLNOGUMHTZPqFypaSPe5Jp1bjZvMLRn1Az5xlgnb334Q+BTIr4sXsFgSzLmz8eJl24cew0EL1fJ619nM1PoVQ=="
-  "resolved" "https://registry.npmjs.org/react-native-cidscan/-/react-native-cidscan-1.0.96.tgz"
-  "version" "1.0.96"
+"react-native-cidscan@^1.1.2":
+  "integrity" "sha512-Ykx3R9h0KhScpd2M//M4ALnslL4FJZvAD4ggZyfJC+oxlXeL2iOdx+vx3pnZm+z1GR7cZX94dwg4JcFUGnYIjw=="
+  "resolved" "https://registry.npmjs.org/react-native-cidscan/-/react-native-cidscan-1.1.2.tgz"
+  "version" "1.1.2"
 
 "react-native-codegen@^0.0.7":
   "integrity" "sha512-dwNgR8zJ3ALr480QnAmpTiqvFo+rDtq6V5oCggKhYFlRjzOmVSFn3YD41u8ltvKS5G2nQ8gCs2vReFFnRGLYng=="
