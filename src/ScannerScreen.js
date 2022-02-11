@@ -22,11 +22,14 @@ function startDecode() {
 function zoom(){
   //switch between zoom values
   if(activeZoom == minZoom){
+    //Cidscan.getMaxZoom(callback);
     Cidscan.setCameraZoom(true, maxZoom);
     activeZoom = maxZoom;
+    console.debug(maxZoom);
   } else {
     Cidscan.setCameraZoom(true, minZoom);
     activeZoom = minZoom;
+    console.debug(minZoom);
   }
 }
 
@@ -35,14 +38,16 @@ function callback(error, result) {
     // Funktion eurer Wahl
   } else {
     //console.debug(result);
-    console.debug(result.result[0].objValue);
+    console.debug(result);
     if(result.result[0].objValue.length > 3){
       maxZoom = result.result[0].objValue[result.result[0].objValue.length - 1];
       minZoom = result.result[0].objValue[0];
       avgZoom = result.result[0].objValue[(result.result[0].objValue.length / 2) - 1];
+      console.debug(maxZoom + minZoom);
     } else {
       maxZoom = result.result[0].objValue[result.result[0].objValue.length - 1];
       minZoom = result.result[0].objValue[0];
+      console.debug(maxZoom + minZoom);
     }
   }
 }
