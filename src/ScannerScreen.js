@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Button, View, StyleSheet} from 'react-native';
+import {Button, View, StyleSheet, NativeEventEmitter, Alert} from 'react-native';
 import {Icon} from 'react-native-elements';
 import Cidscan from 'react-native-cidscan';
 import RNCIDScanView from 'react-native-cidscan/src/cidscanview';
@@ -11,13 +11,54 @@ var minZoom = 1;
 var avgZoom = 1;
 var activeZoom = 1;
 
-function startDecode() {
+const captureIDHandlerEmitter = new NativeEventEmitter(Cidscan);
+
+
+
+async function startDecode() {
+  //Add Listener
+  this.subscription = captureIDHandlerEmitter.addListener(
+    'decoderEvent',
+    data => {
+      console.log(JSON.stringify(data));
+      //Cidscan.stopDecoding();
+      InvalidFormatAlert();
+      //pp.props.navigation.navigate('Home');
+    },
+  );
+  
   // Init decoding
   Cidscan.startDecoder();
 
   // Get zoom values from camera
-  Cidscan.getZoomRatios(callback);
+  await Cidscan.getZoomRatios(callback);
 }
+
+const InvalidFormatAlert = () => {
+        
+  Alert.alert(
+      "Invalid 2D barcode",
+      "Please use a valid 2D barcode for scanning.",
+      [
+          {
+              text: "Retry",
+              onPress: () => {
+                  Cidscan.startDecoder();
+              },
+          },
+          {
+              text: "Go Back",
+              onPress: () => {
+                  Cidscan.closeCamera();
+                  pp.props.navigation.navigate('Home');
+              },
+              style: "cancel",
+          },
+      ],
+      { cancelable: false }
+  );
+};
+
 
 function zoom(){
   //switch between zoom values

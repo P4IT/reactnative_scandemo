@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "17.0.2",
     "react-native": "0.66.3",
-    "react-native-cidscan": "^1.1.7",
+    "react-native-cidscan": "^1.1.9",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-orientation": "^3.1.3",

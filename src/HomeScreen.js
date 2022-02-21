@@ -1,26 +1,20 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react';
-import { View, NativeEventEmitter, ScrollView } from 'react-native';
+import { View, NativeEventEmitter, ScrollView, Alert } from 'react-native';
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import Cidscan from 'react-native-cidscan';
 
-const captureIDHandlerEmitter = new NativeEventEmitter(Cidscan);
+
 
 const mKey =
-  '3GMM0JoPuBmTaEljW05fTTYwuxHoUJenUdhiOhlryLzk6JS2KrOQadsXwUljXlAJfy+38VQAwZL1IQTciywDA2J0vmNueQgqBhlRZIgaiKw85gcYVubic7CeEt4OMojQXxR9rax1x/Byh3hBKKiHFBzi0wQgLyzJBtkMZHYLLyfVdoDuD2DRTtnzPBDjTnTQKeumZQ5KlljTBCMzylTPKnqcm6lvebEtS6tPR0dBnHqNK6JItgf0d662KxcW+4Of8q/6IMEumnXXtI1hO7tmiUl98qT/FQ4o1TcRL6X/WbQM23ItT17EwHwi4ZPR4gReOAl+HodbqWFDlg6FHOI2xs8CuZDUreb6RmTzOKdEwcPR94Vgl+vT2IJ2i/5LObQUe4d86jHvebqxFH8SbzvYvw==';
+  'avQGpsFFs5pKam7OyN8VjIdqeCv/lyU1lqQQ73lOdnfv/4VQHAotVJlBLcmAu180U7ix7n6XYZBdXEea2TnCsZOYuP8kiHcC/E9DLt1DJEh/65gr75Onj8CZ1HP0X2nRipGMgyEyqYfy9VA03USSYC3k51KXzYQosF19j4HKXyf32Jl47Aaw5FRPxZIbK3QLKDtqCtEq1PmRxY42ceLoEncQsHBRQa2niIcRQ+asvOb//4+hSCpJidqTwHhaLZs4SdjuzJIJRIDKB45mFVOnO/2S3kobKvTR48+h3ZQOS+eyVOFicwCByZ2D9Oqg/pTQQtZkLNwX31wdwE0QzoaJ8JX/N2jtM0vthbyIYizCj/XQb53d+t2spu0PTpt4gLWl2pJokOmK1OteQDtTzK4SzA==';
 const mCust = 'P4I082220190001';
 
 var pp;
 
 async function init() {
   await Cidscan.initCaptureID(callback);
-  this.subscription = captureIDHandlerEmitter.addListener(
-    'decoderEvent',
-    data => {
-      console.log(JSON.stringify(data));
-      pp.props.navigation.navigate('Home');
-    },
-  );
+  
 }
 
 async function activate() {
@@ -39,6 +33,7 @@ function license(error, result) {
   if (error) {
     // Funktion eurer Wahl
   } else {
+    //Cidscan.setContinuousMode(true);
     // Funktion eurer Wahl
   }
 }
